@@ -15,10 +15,10 @@ import java.io.IOException;
 import java.net.URL;
 
 public class Main {
-
+    public static final String NASA_API_KEY = "ВАШ КЛЮЧ";
     // Ключ удалил на всякий, говорят разные ключи парсят на гитхабе
     public static final String NASA_URI =
-            "https://api.nasa.gov/planetary/apod?api_key=ВАШ_КЛЮЧ";
+            "https://api.nasa.gov/planetary/apod?api_key=";
 
 
     public static ObjectMapper mapper = new ObjectMapper();
@@ -33,7 +33,7 @@ public class Main {
                         .build())
                 .build();
 
-        HttpGet request = new HttpGet(NASA_URI);
+        HttpGet request = new HttpGet(NASA_URI + NASA_API_KEY);
         request.setHeader(HttpHeaders.ACCEPT, ContentType.APPLICATION_JSON.getMimeType());
         CloseableHttpResponse response = httpClient.execute(request);
         NasaRequest input = mapper.readValue(
